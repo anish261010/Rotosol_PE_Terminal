@@ -1,0 +1,7 @@
+{
+  "name": "Rotosol_PE_Terminal",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
