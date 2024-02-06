@@ -1,0 +1,39 @@
+.sent {
+  background-color: #017bf4;
+  color: white;
+  float: right;
+  width: fit-content;
+  padding: 5px 30px 5px 5px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  font-size: 13px;
+  border-top-right-radius: 10px;
+}
+
+.received {
+  background-color: #dedede;
+  color: #333;
+  width: fit-content;
+  float: left;
+  padding: 7px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  font-size: 13px;
+  border-top-right-radius: 10px;
+}
+.message {
+  margin: 20px 0 20px 20px;
+  width: fit-content;
+  max-width: 50%;
+}
+.sentwrap {
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  width: 100%;
+}
+.receivedwrap {
+  display: flex;
+  justify-content: start;
+  width: 100%;
+}

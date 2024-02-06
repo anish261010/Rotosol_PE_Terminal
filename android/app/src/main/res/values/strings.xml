@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Rotosol PE Terminal</string>
+    <string name="title_activity_main">Rotosol PE Terminal</string>
+    <string name="package_name">com.rotosol.terminal</string>
+    <string name="custom_url_scheme">com.rotosol.terminal</string>
+</resources>

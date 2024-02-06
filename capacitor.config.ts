@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'Rotosol_PE_Terminal',
+  appId: 'com.rotosol.terminal',
+  appName: 'Rotosol PE Terminal',
   webDir: 'www',
   server: {
     androidScheme: 'https'

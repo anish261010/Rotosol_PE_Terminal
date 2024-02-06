@@ -1,0 +1,17 @@
+<div [class.sentwrap]="chat.sent" [class.receivedwrap]="!chat.sent">
+  <div class="message" [class.sent]="chat.sent" [class.received]="!chat.sent">
+    {{ chat.text }}
+  </div>
+  <div style="display: flex; margin-bottom: 20px">
+    <!-- <ion-icon
+      *ngIf="!chat.sent"
+      style="color: #017bf4"
+      name="checkmark-done-circle-outline"
+    ></ion-icon> -->
+    <ion-icon
+      *ngIf="chat.sent"
+      style="color: #017bf4"
+      name="checkmark-circle-outline"
+    ></ion-icon>
+  </div>
+</div>

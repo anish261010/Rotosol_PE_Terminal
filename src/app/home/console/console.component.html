@@ -1,0 +1,135 @@
+<ion-menu content-id="main-content" style="background: transparent">
+  <ion-content class="ion-padding menu-content">
+    <div>
+      <img src="assets/logo.png" alt="" />
+    </div>
+    <div>
+      <ion-menu-toggle class="toggle">
+        <p
+          (click)="clickMenu('Terminal')"
+          [class.menu-wrap]="isMenuTitle === 'Terminal'"
+        >
+          Terminal
+        </p>
+        <p
+          (click)="clickMenu('Devices')"
+          [class.menu-wrap]="isMenuTitle === 'Devices'"
+        >
+          Devices
+        </p>
+      </ion-menu-toggle>
+    </div>
+  </ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <div class="menu-header">
+      <div class="name">
+        <ion-title>{{ isMenuTitle }}</ion-title>
+      </div>
+      <div>
+        <ion-menu-toggle>
+          <ion-icon name="menu-outline" size="large"></ion-icon>
+        </ion-menu-toggle>
+      </div>
+    </div>
+  </ion-header>
+
+  <ion-content #messageElement>
+    <div class="console-page" *ngIf="isMenuTitle == 'Terminal'">
+      <ion-list lines="none">
+        <ion-item-group class="chats-group" *ngFor="let chat of messages">
+          <app-chat-box [chat]="chat"></app-chat-box>
+        </ion-item-group>
+      </ion-list>
+    </div>
+    <div class="device-page" *ngIf="isMenuTitle == 'Devices'">
+      <div class="btn">
+        <ion-button class="btn-wrap" (click)="unPairedDevices()"
+          ><ion-icon name="bluetooth-outline"></ion-icon> Scan Available Devices
+        </ion-button>
+      </div>
+      <div class="avble-dve">
+        <div class="heading">Available Devices</div>
+        <p *ngIf="!deviceList.length" style="margin: 20px; font-size: 13px">
+          No devices are available
+        </p>
+        <div class="content-wrap" *ngFor="let data of deviceList; let index">
+          <div
+            (click)="connectToDevice(data, index)"
+            class="device-wrap"
+            [ngStyle]="{
+              'border-color': deviceIndex === index ? '#017BF4' : 'black',
+              color: deviceIndex === index ? '#017BF4' : 'black'
+            }"
+          >
+            <div>{{ data.name }}</div>
+            <div *ngIf="info && deviceIndex === index && !isLoading">
+              {{ info }}
+            </div>
+            <div *ngIf="deviceIndex === index && isLoading">
+              <ion-spinner style="color: #017bf4"></ion-spinner>
+              <!-- <ion-icon name="refresh-outline"></ion-icon> &nbsp; connecting -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ion-alert
+      [isOpen]="isAlertOpen"
+      header="Info"
+      [message]="alertMsg"
+      [buttons]="alertButtons"
+      (didDismiss)="setOpen(false)"
+    ></ion-alert>
+  </ion-content>
+
+  <ion-footer
+    style="padding-bottom: 130px"
+    class="footer"
+    *ngIf="isMenuTitle == 'Terminal'"
+  >
+    <div class="txt-box">
+      <div class="drpdn">
+        <ion-select
+          aria-label="Fruit"
+          fill="outline"
+          interface="popover"
+          class="select"
+          value="1"
+          shape="round"
+          (ionChange)="selectedCmd($event)"
+        >
+          <div id="open-modal" expand="block">
+            <ion-select-option value="1">GET</ion-select-option>
+          </div>
+          <ion-select-option id="open-modal" expand="block" value="2"
+            >SET</ion-select-option
+          >
+          <ion-select-option id="open-modal" expand="block" value="3"
+            >OTHER</ion-select-option
+          >
+        </ion-select>
+      </div>
+      <div class="input-box">
+        <ion-input
+          fill="outline"
+          placeholder="Enter Your Command"
+          class="custom-input"
+          [(ngModel)]="newMessage"
+          ngDefaultControl
+          shape="round"
+          (click)="openModal()"
+        >
+          <ion-icon
+            name="paper-plane-outline"
+            slot="end"
+            size="medium"
+            (click)="sendMessage()"
+            style="font-size: large; color: #017bf4"
+          ></ion-icon>
+        </ion-input>
+      </div>
+    </div>
+  </ion-footer>
+</div>

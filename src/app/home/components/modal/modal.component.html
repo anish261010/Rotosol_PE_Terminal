@@ -1,0 +1,8 @@
+
+<ion-content class="ion-padding half-page-modal">
+  <ion-item *ngFor="let item of items">
+    <ion-list (click)="confirm(item)" >
+      {{ item }}
+    </ion-list>
+  </ion-item>
+</ion-content>
